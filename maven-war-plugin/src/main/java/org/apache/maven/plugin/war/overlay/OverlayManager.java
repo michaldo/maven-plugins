@@ -246,7 +246,8 @@ public class OverlayManager
         final List<Artifact> result = new ArrayList<Artifact>();
         for ( Artifact artifact : artifacts )
         {
-            if ( !artifact.isOptional() && filter.include( artifact ) && ( "war".equals( artifact.getType() ) ) )
+            if ( !artifact.isOptional() && filter.include( artifact ) && "war".equals( artifact.getType() ) 
+                && ( artifact.getDependencyTrail() != null ? artifact.getDependencyTrail().size() <= 2 : true ) )
             {
                 result.add( artifact );
             }
